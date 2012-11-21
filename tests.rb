@@ -10,6 +10,7 @@ require "simplecov"
 SimpleCov.start
 
 require "datasizes"
+require "datasizes/exceptions"
 
 describe "#to_bytes" do
     specify("bytes") do
@@ -33,7 +34,7 @@ describe "#to_bytes" do
     end
 
     specify("invalid") do
-        #Datasizes::to_bytes("abcd").should == 3 * (1024 ** 4)    
+        expect { Datasizes::to_bytes("abcd") }.to raise_error(Datasizes::InvalidSpecification)
     end
 end
 
@@ -59,7 +60,7 @@ describe "#to_magnitude" do
     end
     
     specify("invalid") do
-        #Datasizes::to_bytes("abcd").should == 3 * (1024 ** 4)    
+        expect { Datasizes::to_magnitude(3 * (1024 ** 4), :a) }.to raise_error(Datasizes::InvalidMagnitude)
     end
 end
 

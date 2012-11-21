@@ -2,6 +2,7 @@
 # (c) 2012 Martin Kozák (martinkozak@martinkozak.net)
 
 require "hash-utils"
+require "datasizes/exceptions"
 
 module Datasizes
 
@@ -64,7 +65,7 @@ module Datasizes
         factor = self::MAGNITUDES[magnitude]
         
         if factor.nil?
-            throw new InvalidMagnitude("Invalid magnitude '#{magnitude}'.")
+            raise Datasizes::InvalidMagnitude::new("Invalid magnitude '#{magnitude}'.")
         end
         
         (size / (1024 ** factor)).to_s + magnitude.to_s
@@ -101,7 +102,7 @@ module Datasizes
         matches = spec.match(self::ANALYSER)
         
         if matches.nil?
-            throw Datasizes::InvalidSpecification::new("Invalid datasizes specification '#{spec}'.")
+            raise Datasizes::InvalidSpecification
         else
             size = matches[1].to_i 
             if not matches[2].nil?
