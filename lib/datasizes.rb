@@ -17,6 +17,10 @@ module Datasizes
         :M => 2,
         :G => 3,
         :T => 4,
+        :P => 5,
+        :E => 6,
+        :Z => 7,
+        :Y => 8,
     }
     
     ##
@@ -24,7 +28,7 @@ module Datasizes
     # @var [Regexp]
     #
     
-    ANALYSER = /^(\d+)([KMGT])?$/u
+    ANALYSER = /^(\d+)([KMGTPEZY])?$/u
 
     ##
     # Converts specification to bytes.
