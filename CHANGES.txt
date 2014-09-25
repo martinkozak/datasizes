@@ -1,3 +1,6 @@
 
+1.0.1 (2014-09-25)
+* 'hash-utils' dependency removed
+
 1.0.0 (2012-11-22) 
 * initial version

@@ -1,7 +1,7 @@
 # encoding: utf-8
-# (c) 2012 Martin Kozák (martinkozak@martinkozak.net)
+# (c) 2012-2014 Martin Kozák (martinkozak@martinkozak.net)
+# (c) 2014 Martin Poljak (martin@poljak.cz)
 
-require "hash-utils"
 require "datasizes/exceptions"
 
 module Datasizes
@@ -11,7 +11,7 @@ module Datasizes
     # @var [Hash]
     #
     
-    MAGNITUDES = {
+    MAGNITUDES = Hash[{
         nil => 0,
         :K => 1,
         :M => 2,
@@ -21,7 +21,7 @@ module Datasizes
         :E => 6,
         :Z => 7,
         :Y => 8,
-    }
+    }.to_a.reverse]
     
     ##
     # Contains analyser query.
@@ -51,7 +51,7 @@ module Datasizes
     #
     
     def self.count_bytes(amount, magnitude = nil)
-        magnitude = magnitude.to_sym if magnitude.string?
+        magnitude = magnitude.to_sym if magnitude.kind_of? String
         magnitude = self::MAGNITUDES[magnitude]
         return amount * (1024 ** magnitude)
     end
@@ -65,7 +65,7 @@ module Datasizes
     #
     
     def self.to_magnitude(size, magnitude = nil)
-        magnitude = magnitude.to_sym if magnitude.string?
+        magnitude = magnitude.to_sym if magnitude.kind_of? String
         factor = self::MAGNITUDES[magnitude]
         
         if factor.nil?
@@ -84,7 +84,7 @@ module Datasizes
     #
     
     def self.from_bytes(size)
-        self::MAGNITUDES.reverse.each_key do |magnitude|
+        self::MAGNITUDES.each_key do |magnitude|
             amount = self.count_bytes(1, magnitude)
             remain = size % amount
             

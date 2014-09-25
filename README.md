@@ -26,8 +26,8 @@ Contributing
 Copyright
 ---------
 
-Copyright &copy; 2012 [Martin Kozák][10]. See `LICENSE.txt` for
-further details.
+Copyright &copy; 2012-2014 [Martin Poljak][10]. See `LICENSE.txt` 
+for further details.
 
 [9]: http://github.com/martinkozak/datasizes/issues
-[10]: http://www.martinkozak.net/
+[10]: http://www.martinpoljak.net/
